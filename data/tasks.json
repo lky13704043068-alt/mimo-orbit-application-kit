@@ -1,0 +1,92 @@
+[
+  {
+    "id": "repo-understanding-001",
+    "type": "repo-understanding",
+    "title": "Summarize repository architecture and key files",
+    "objective": "Read the repository context and produce a file-level architecture map for future coding-agent runs.",
+    "agents": ["repository-context-loader", "planning-agent"],
+    "inputs": ["README.md", "docs/workflow-zh.md", "prompts/planning-agent.md"],
+    "expectedOutputs": ["architecture summary", "file map", "risk notes"],
+    "successCriteria": ["mentions all major folders", "identifies runnable scripts", "flags missing integration points"]
+  },
+  {
+    "id": "feature-planning-001",
+    "type": "feature-planning",
+    "title": "Plan a multi-file validation feature",
+    "objective": "Convert a product requirement into a technical plan with affected files, risks, and tests.",
+    "agents": ["planning-agent", "review-agent"],
+    "inputs": ["examples/sample-task.md", "prompts/planning-agent.md", "prompts/review-agent.md"],
+    "expectedOutputs": ["implementation plan", "test plan", "risk list"],
+    "successCriteria": ["clear file-level actions", "includes backward compatibility risk", "includes test coverage"]
+  },
+  {
+    "id": "multi-file-coding-001",
+    "type": "multi-file-coding",
+    "title": "Generate a patch plan across source, tests, and docs",
+    "objective": "Ask the coding agent to coordinate source changes, test changes, and README updates as one task.",
+    "agents": ["planning-agent", "coding-agent", "review-agent"],
+    "inputs": ["examples/sample-task.md", "README.md", "docs/workflow-zh.md"],
+    "expectedOutputs": ["patch plan", "test additions", "documentation update"],
+    "successCriteria": ["keeps public behavior stable", "updates tests", "summarizes user-visible change"]
+  },
+  {
+    "id": "test-diagnosis-001",
+    "type": "test-diagnosis",
+    "title": "Diagnose a failing test from logs",
+    "objective": "Read a failure log and repository context to propose the smallest safe fix.",
+    "agents": ["test-diagnosis-agent", "review-agent"],
+    "inputs": ["fixtures/logs/build-failure.txt", "prompts/test-diagnosis-agent.md", "reports/sample-evaluation-report.json"],
+    "expectedOutputs": ["root cause", "minimal fix", "regression test"],
+    "successCriteria": ["cites evidence", "avoids broad rewrites", "adds regression coverage"]
+  },
+  {
+    "id": "pr-review-001",
+    "type": "pull-request-review",
+    "title": "Review a proposed implementation for correctness and missing tests",
+    "objective": "Evaluate a simulated pull request diff using production review standards.",
+    "agents": ["review-agent"],
+    "inputs": ["fixtures/diffs/validation-feature.diff", "prompts/review-agent.md", "docs/workflow-zh.md"],
+    "expectedOutputs": ["ordered findings", "test gaps", "residual risks"],
+    "successCriteria": ["prioritizes bugs first", "uses actionable wording", "mentions missing tests"]
+  },
+  {
+    "id": "docs-update-001",
+    "type": "documentation",
+    "title": "Update developer documentation after an agent workflow change",
+    "objective": "Generate a concise documentation patch from code and workflow changes.",
+    "agents": ["documentation-agent", "review-agent"],
+    "inputs": ["README.md", "docs/workflow-zh.md", "reports/task-matrix.md"],
+    "expectedOutputs": ["README patch", "runbook patch", "release note"],
+    "successCriteria": ["documents commands", "documents outputs", "removes stale statements"]
+  },
+  {
+    "id": "comparison-001",
+    "type": "model-comparison",
+    "title": "Compare MiMo with another coding model on the same prompt bundle",
+    "objective": "Prepare a repeatable comparison run with shared context and metrics.",
+    "agents": ["planning-agent", "review-agent"],
+    "inputs": ["data/model-comparison-template.md", "reports/task-matrix.md", "prompts/planning-agent.md"],
+    "expectedOutputs": ["comparison plan", "shared prompt bundle", "metrics table"],
+    "successCriteria": ["same prompt across models", "records token estimates", "records pass/fail result"]
+  },
+  {
+    "id": "long-context-001",
+    "type": "long-context-stress",
+    "title": "Stress test long-context repository reading",
+    "objective": "Bundle docs, prompts, examples, and reports into a large context prompt to test consistency.",
+    "agents": ["repository-context-loader", "planning-agent", "review-agent", "documentation-agent"],
+    "inputs": [
+      "README.md",
+      "docs/workflow-zh.md",
+      "application/max-plan-application-v2-zh.md",
+      "reports/task-matrix.md",
+      "reports/evaluation-journal-template.md",
+      "prompts/planning-agent.md",
+      "prompts/review-agent.md",
+      "prompts/test-diagnosis-agent.md"
+    ],
+    "expectedOutputs": ["context summary", "contradiction report", "next-run plan"],
+    "successCriteria": ["preserves project intent", "finds inconsistencies", "proposes concrete next tasks"]
+  }
+]
+

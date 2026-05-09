@@ -1,0 +1,14 @@
+{
+  "name": "mimo-orbit-application-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A lightweight coding-agent evaluation kit for testing MiMo-V2.5-Pro in long-context engineering workflows.",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "scripts": {
+    "evaluate": "node scripts/evaluate_task.js",
+    "report": "node scripts/build_report.js",
+    "benchmark": "node scripts/run_benchmark.js",
+    "dashboard": "node scripts/serve_dashboard.js"
+  }
+}

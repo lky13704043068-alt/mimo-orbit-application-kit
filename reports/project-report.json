@@ -1,0 +1,49 @@
+{
+  "project": "MiMo Coding Agent Workflow Kit",
+  "generatedAt": "2026-05-09T12:26:30.305Z",
+  "summary": {
+    "repoType": "agent evaluation kit",
+    "focus": [
+      "long-context",
+      "multi-file coding",
+      "review",
+      "test diagnosis",
+      "docs"
+    ],
+    "evidenceFiles": [
+      "proof-images/01-project-tree.png",
+      "proof-images/02-readme-overview.png",
+      "proof-images/03-git-log.png",
+      "proof-images/04-evaluation-report.png"
+    ],
+    "artifactCount": 22
+  },
+  "artifacts": {
+    "applicationDocs": [
+      "application/form-fill-guide-zh.md",
+      "application/impact-evidence-pack-zh.md",
+      "application/max-answer-1200chars-v2.md",
+      "application/max-plan-application-v2-zh.md",
+      "application/max-plan-application-zh.md",
+      "application/one-minute-pitch-zh.md",
+      "application/screenshot-checklist-zh.md"
+    ],
+    "prompts": [
+      "prompts/planning-agent.md",
+      "prompts/review-agent.md",
+      "prompts/test-diagnosis-agent.md"
+    ],
+    "examples": [
+      "examples/sample-task.md"
+    ],
+    "reports": [
+      "reports/benchmark-report.json",
+      "reports/benchmark-report.md",
+      "reports/evaluation-journal-template.md",
+      "reports/project-report.json",
+      "reports/prompts",
+      "reports/sample-evaluation-report.json",
+      "reports/task-matrix.md"
+    ]
+  }
+}

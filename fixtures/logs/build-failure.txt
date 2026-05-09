@@ -1,0 +1,21 @@
+> mimo-agent-benchmark@1.0.0 test
+> node tests/validation.test.js
+
+FAIL tests/validation.test.js
+  validateCreateUser
+    ✓ accepts a valid payload
+    ✕ rejects an empty email
+
+Expected validation error code:
+  INVALID_EMAIL
+
+Received:
+  undefined
+
+Stack:
+  at validateCreateUser (src/validators/user.js:18:11)
+  at createUserHandler (src/routes/users.js:31:17)
+
+Recent change:
+  The route now calls normalizePayload before validateCreateUser.
+

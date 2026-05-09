@@ -1,3 +1,24 @@
+# Task: Update developer documentation after an agent workflow change
+
+Type: documentation
+Objective: Generate a concise documentation patch from code and workflow changes.
+
+## Agents
+- documentation-agent
+- review-agent
+
+## Expected Outputs
+- README patch
+- runbook patch
+- release note
+
+## Success Criteria
+- documents commands
+- documents outputs
+- removes stale statements
+
+## Repository Context
+## README.md
 # MiMo Coding Agent Workflow Kit
 
 This repository is a runnable benchmark harness for testing MiMo-V2.5-Pro in AI coding, long-context repository understanding, and agentic development workflows.
@@ -130,3 +151,117 @@ The current generated benchmark report projects `229,600,000` tokens across a fo
 ## Status
 
 This is an early-stage builder project with a runnable offline benchmark mode. The next stage is to connect MiMo-V2.5-Pro API access and attach real model outputs to each task run.
+
+
+## docs/workflow-zh.md
+# MiMo Coding Agent 工作流说明
+
+## 背景
+
+传统 AI 编程助手通常只处理单个文件或短上下文问题，但真实研发任务往往需要模型理解完整项目。尤其是 Agent 工作流，会反复读取需求、代码、测试、日志和历史修改记录。
+
+MiMo-V2.5-Pro 的长上下文能力适合这类场景，因为它可以减少上下文切片带来的信息丢失，让模型更稳定地理解工程全貌。
+
+## 工作流设计
+
+### 1. Repository Context Loader
+
+收集项目上下文：
+
+- 目录结构
+- README
+- package 配置
+- 关键源码
+- 测试文件
+- 最近变更
+- 错误日志
+
+### 2. Planning Agent
+
+输出：
+
+- 任务拆解
+- 影响范围
+- 修改计划
+- 风险点
+- 测试计划
+
+### 3. Coding Agent
+
+输出：
+
+- 代码修改方案
+- 多文件改动
+- 测试补充
+- 类型错误修复
+
+### 4. Review Agent
+
+检查：
+
+- 是否遗漏边界条件
+- 是否引入兼容性问题
+- 是否缺少测试
+- 是否存在安全或性能风险
+- 是否符合项目现有风格
+
+### 5. Test Diagnosis Agent
+
+处理：
+
+- 单元测试失败
+- 构建失败
+- 类型检查失败
+- 运行时错误
+- 回归问题
+
+### 6. Documentation Agent
+
+生成：
+
+- README 更新
+- API 文档
+- 迁移说明
+- 发布说明
+- 示例用法
+
+## 评估指标
+
+- 任务完成率
+- 代码正确性
+- Review 有效性
+- 测试修复成功率
+- 文档可读性
+- Token 消耗
+- 平均完成时间
+
+
+
+## reports/task-matrix.md
+# Coding Agent Task Matrix
+
+This matrix describes the type of tasks this project is designed to evaluate.
+
+| Task Type | Inputs | Output | Why Long Context Matters |
+| --- | --- | --- | --- |
+| Repo understanding | Full tree, README, configs, key source files | Architecture summary, dependency map | The model must read many files together |
+| Feature planning | Issue, product notes, codebase state | Implementation plan, risk list | Planning depends on complete project context |
+| Multi-file coding | Several source files and tests | Patch across modules | Changes must stay consistent across files |
+| Test diagnosis | Failing logs, test files, recent diff | Root cause, minimal fix | Error text and code must be compared together |
+| PR review | Diff, tests, project conventions | Findings and missing tests | Review quality depends on repo-wide style |
+| Docs update | Code changes, release notes, README | Documentation patch | Docs must reflect implementation accurately |
+
+## Evaluation cadence
+
+- Baseline run: 1 to 3 tasks
+- Weekly run: 5 to 10 tasks
+- Full benchmark: 20+ tasks
+
+## Token profile
+
+- Small task: 10K to 50K tokens
+- Typical task: 100K to 300K tokens
+- Heavy task: 300K to 1M tokens
+
+The project is intentionally structured around repeated long-context tasks so that the model is evaluated in the same way it will be used in practice.
+

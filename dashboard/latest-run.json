@@ -1,0 +1,281 @@
+{
+  "project": "MiMo Coding Agent Workflow Kit",
+  "generatedAt": "2026-05-09T12:26:30.310Z",
+  "mode": "offline-planning",
+  "summary": {
+    "totalTasks": 8,
+    "totalSeedPromptTokens": 24484,
+    "totalProjectedRunTokens": 6250000,
+    "totalProjectedMonthlyTokens": 229600000,
+    "heavyTasks": 8,
+    "missingInputs": 0
+  },
+  "tasks": [
+    {
+      "id": "repo-understanding-001",
+      "type": "repo-understanding",
+      "title": "Summarize repository architecture and key files",
+      "objective": "Read the repository context and produce a file-level architecture map for future coding-agent runs.",
+      "agents": [
+        "repository-context-loader",
+        "planning-agent"
+      ],
+      "expectedOutputs": [
+        "architecture summary",
+        "file map",
+        "risk notes"
+      ],
+      "successCriteria": [
+        "mentions all major folders",
+        "identifies runnable scripts",
+        "flags missing integration points"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 1458,
+        "instructionTokens": 74,
+        "agentMultiplier": 2,
+        "seedPromptTokens": 3064,
+        "projectedRunTokens": 500000,
+        "weeklyRuns": 10,
+        "projectedMonthlyTokens": 20000000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/repo-understanding-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "feature-planning-001",
+      "type": "feature-planning",
+      "title": "Plan a multi-file validation feature",
+      "objective": "Convert a product requirement into a technical plan with affected files, risks, and tests.",
+      "agents": [
+        "planning-agent",
+        "review-agent"
+      ],
+      "expectedOutputs": [
+        "implementation plan",
+        "test plan",
+        "risk list"
+      ],
+      "successCriteria": [
+        "clear file-level actions",
+        "includes backward compatibility risk",
+        "includes test coverage"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 377,
+        "instructionTokens": 68,
+        "agentMultiplier": 2,
+        "seedPromptTokens": 890,
+        "projectedRunTokens": 400000,
+        "weeklyRuns": 12,
+        "projectedMonthlyTokens": 19200000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/feature-planning-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "multi-file-coding-001",
+      "type": "multi-file-coding",
+      "title": "Generate a patch plan across source, tests, and docs",
+      "objective": "Ask the coding agent to coordinate source changes, test changes, and README updates as one task.",
+      "agents": [
+        "planning-agent",
+        "coding-agent",
+        "review-agent"
+      ],
+      "expectedOutputs": [
+        "patch plan",
+        "test additions",
+        "documentation update"
+      ],
+      "successCriteria": [
+        "keeps public behavior stable",
+        "updates tests",
+        "summarizes user-visible change"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 1546,
+        "instructionTokens": 72,
+        "agentMultiplier": 3,
+        "seedPromptTokens": 4854,
+        "projectedRunTokens": 900000,
+        "weeklyRuns": 12,
+        "projectedMonthlyTokens": 43200000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/multi-file-coding-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "test-diagnosis-001",
+      "type": "test-diagnosis",
+      "title": "Diagnose a failing test from logs",
+      "objective": "Read a failure log and repository context to propose the smallest safe fix.",
+      "agents": [
+        "test-diagnosis-agent",
+        "review-agent"
+      ],
+      "expectedOutputs": [
+        "root cause",
+        "minimal fix",
+        "regression test"
+      ],
+      "successCriteria": [
+        "cites evidence",
+        "avoids broad rewrites",
+        "adds regression coverage"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 338,
+        "instructionTokens": 57,
+        "agentMultiplier": 2,
+        "seedPromptTokens": 790,
+        "projectedRunTokens": 600000,
+        "weeklyRuns": 14,
+        "projectedMonthlyTokens": 33600000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/test-diagnosis-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "pr-review-001",
+      "type": "pull-request-review",
+      "title": "Review a proposed implementation for correctness and missing tests",
+      "objective": "Evaluate a simulated pull request diff using production review standards.",
+      "agents": [
+        "review-agent"
+      ],
+      "expectedOutputs": [
+        "ordered findings",
+        "test gaps",
+        "residual risks"
+      ],
+      "successCriteria": [
+        "prioritizes bugs first",
+        "uses actionable wording",
+        "mentions missing tests"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 508,
+        "instructionTokens": 68,
+        "agentMultiplier": 1,
+        "seedPromptTokens": 576,
+        "projectedRunTokens": 500000,
+        "weeklyRuns": 14,
+        "projectedMonthlyTokens": 28000000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/pr-review-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "docs-update-001",
+      "type": "documentation",
+      "title": "Update developer documentation after an agent workflow change",
+      "objective": "Generate a concise documentation patch from code and workflow changes.",
+      "agents": [
+        "documentation-agent",
+        "review-agent"
+      ],
+      "expectedOutputs": [
+        "README patch",
+        "runbook patch",
+        "release note"
+      ],
+      "successCriteria": [
+        "documents commands",
+        "documents outputs",
+        "removes stale statements"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 1703,
+        "instructionTokens": 62,
+        "agentMultiplier": 2,
+        "seedPromptTokens": 3530,
+        "projectedRunTokens": 350000,
+        "weeklyRuns": 8,
+        "projectedMonthlyTokens": 11200000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/docs-update-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "comparison-001",
+      "type": "model-comparison",
+      "title": "Compare MiMo with another coding model on the same prompt bundle",
+      "objective": "Prepare a repeatable comparison run with shared context and metrics.",
+      "agents": [
+        "planning-agent",
+        "review-agent"
+      ],
+      "expectedOutputs": [
+        "comparison plan",
+        "shared prompt bundle",
+        "metrics table"
+      ],
+      "successCriteria": [
+        "same prompt across models",
+        "records token estimates",
+        "records pass/fail result"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 561,
+        "instructionTokens": 69,
+        "agentMultiplier": 2,
+        "seedPromptTokens": 1260,
+        "projectedRunTokens": 1200000,
+        "weeklyRuns": 8,
+        "projectedMonthlyTokens": 38400000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/comparison-001.md",
+      "missingInputs": []
+    },
+    {
+      "id": "long-context-001",
+      "type": "long-context-stress",
+      "title": "Stress test long-context repository reading",
+      "objective": "Bundle docs, prompts, examples, and reports into a large context prompt to test consistency.",
+      "agents": [
+        "repository-context-loader",
+        "planning-agent",
+        "review-agent",
+        "documentation-agent"
+      ],
+      "expectedOutputs": [
+        "context summary",
+        "contradiction report",
+        "next-run plan"
+      ],
+      "successCriteria": [
+        "preserves project intent",
+        "finds inconsistencies",
+        "proposes concrete next tasks"
+      ],
+      "tokenEstimate": {
+        "inputTokens": 2309,
+        "instructionTokens": 71,
+        "agentMultiplier": 4,
+        "seedPromptTokens": 9520,
+        "projectedRunTokens": 1800000,
+        "weeklyRuns": 5,
+        "projectedMonthlyTokens": 36000000
+      },
+      "workloadClass": "heavy",
+      "status": "ready",
+      "promptFile": "reports/prompts/long-context-001.md",
+      "missingInputs": []
+    }
+  ]
+}

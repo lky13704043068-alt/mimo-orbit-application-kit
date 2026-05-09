@@ -1,0 +1,28 @@
+diff --git a/src/routes/users.js b/src/routes/users.js
+index 1f4a111..9c5b112 100644
+--- a/src/routes/users.js
++++ b/src/routes/users.js
+@@ -1,8 +1,11 @@
+ export async function createUserHandler(req, res) {
+-  const user = await createUser(req.body);
++  const payload = normalizePayload(req.body);
++  const user = await createUser(payload);
+   res.status(201).json(user);
+ }
++
++function normalizePayload(payload) {
++  return { ...payload, email: payload.email && payload.email.trim() };
++}
+diff --git a/tests/users.test.js b/tests/users.test.js
+index 33ab101..73ea441 100644
+--- a/tests/users.test.js
++++ b/tests/users.test.js
+@@ -10,3 +10,8 @@ test("creates user", async () => {
+   expect(response.status).toBe(201);
+ });
++
++test("trims email whitespace", async () => {
++  const response = await request(app).post("/users").send({ email: " a@example.com " });
++  expect(response.status).toBe(201);
++});
+
